@@ -237,10 +237,52 @@
 <p>五块钱买的域名和一整套免费的服务让我找到了Hexo的组织，由于我自己的破网登GitHub非常的慢，我选择了Hexo + Coding，这样的访问速度就让人安逸。</p>
 </blockquote>
 <h1><span id="配环境"> 配环境</span></h1>
+<hr>
+<p>前面都是基操，安装Node.js 、npm 、Hexo什么的，初始化之后就可以在本地看到Hexo原味主题landscape的页面了。然后把这个页面模板挂到coding上去，coding有个静态页面的服务，部署后就OK了。</p>
+<blockquote>
+<p>PS：以前叫Pages服务，现在已经改名了，顺带一提的是，coding的帮助页面已经移走了，从现在coding的官网进帮助页面，里面的内容才是有效的，不知为何，以前的帮助页面仍然保留了下来，所以百度搜出来的某些 “官方配置教程” 现在已经找不到对应的服务了，里面的内容已经过时了。<br>
+<a href="https://help.coding.net/" target="_blank" rel="noopener">https://help.coding.net/</a><br>
+这个才是现在官方的、有效的帮助页面。</p>
+</blockquote>
+<hr>
+<h2><span id="基操部分"> 基操部分</span></h2>
+<hr>
+<p>我的环境均为win10，先安装Node.js</p>
+<blockquote>
+<ol>
+<li><a href="https://github.com/jasongin/nvs/" target="_blank" rel="noopener">https://github.com/jasongin/nvs/</a>   NVS安装</li>
+<li><a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">https://nodejs.org/en/download/</a>   官网安装</li>
+</ol>
+</blockquote>
+<p>然后就可以用npm了，以下是在git bash命令行里操作的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>PS：Hexo官网说安装完之后，可以使用以下两种方式执行Hexo：</p>
+<ol>
+<li><code>npx hexo &lt;command&gt;</code></li>
+<li>将Hexo所在的目录下的<code>node_modules</code>添加到环境变量之中即可直接使用<code>hexo &lt;command&gt;</code>：</li>
+</ol>
+	<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">echo</span> <span class="string">'PATH="$PATH:./node_modules/.bin"'</span> &gt;&gt; ~/.profile</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>然而我一开始还是第一种办法npx尝试成功没，后来就直接hexo <command>的去用了，也没干别的……</p>
+</blockquote>
+<p>然后就可以进行初始化了！找一个空文件夹，在里面打开git bash：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<p>或者：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ <span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<p>完成之后，就会出现这样的目录结构：</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── <span class="variable">_config</span>.yml   <span class="comment">//网站配置信息文件，可以在此配置大部分参数，以及插件的参数</span></span><br><span class="line">├── package.json  <span class="comment">//应用程序的信息，可以在此看到你安装的插件或你的依赖</span></span><br><span class="line">├── scaffolds     <span class="comment">//模板文件夹，修改其中的内容后，每次新建的文章或其它的什么都会包										含这个修改</span></span><br><span class="line">├── source        <span class="comment">//资源文件夹</span></span><br><span class="line">|   ├── <span class="variable">_drafts</span></span><br><span class="line">|   └── <span class="variable">_posts</span></span><br><span class="line">└── themes        <span class="comment">//主题，默认的有一个landscape主题文件夹</span></span><br></pre></td></tr></table></figure>
+<p>现在只需要改一下<code>_config.yml</code>里的theme配置：</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">theme:</span> landscape</span><br></pre></td></tr></table></figure>
+<p>在<code>hexo init</code>的文件夹下git bash，运行三连命令：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo clean</span><br><span class="line"><span class="variable">$ </span>hexo g</span><br><span class="line"><span class="variable">$ </span>hexo s</span><br></pre></td></tr></table></figure>
+<p>然后按照提示就可以在 localhost:4000 的链接地址里看到页面效果了。此时要部署到coding上还需要在coding下新建代码仓库，设置部署ssh，然后复制这个项目的git地址，如图：<br>
+<img src="ssh_git.png" alt="ssh git 地址"></p>
 <p>$ hh $ hh  $$ hh</p>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mo>∫</mo><mrow><mo>−</mo><mi mathvariant="normal">∞</mi></mrow><mi mathvariant="normal">∞</mi></msubsup><mover accent="true"><mi>f</mi><mo>^</mo></mover><mo stretchy="false">(</mo><mi>ξ</mi><mo stretchy="false">)</mo><mtext> </mtext><msup><mi>e</mi><mrow><mn>2</mn><mi>π</mi><mi>i</mi><mi>ξ</mi><mi>x</mi></mrow></msup><mtext> </mtext><mi>d</mi><mi>ξ</mi></mrow><annotation encoding="application/x-tex"> f(x) = \int_{-\infty}^{\infty}\hat f(\xi)\,e^{2\pi i \xi x}\,d\xi
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mo>∫</mo><mrow><mo>−</mo><mi mathvariant="normal">∞</mi></mrow><mi mathvariant="normal">∞</mi></msubsup><mover accent="true"><mi>f</mi><mo>^</mo></mover><mo stretchy="false">(</mo><mi>ξ</mi><mo stretchy="false">)</mo><mtext> </mtext><msup><mi>e</mi><mrow><mn>2</mn><mi>π</mi><mi>i</mi><mi>ξ</mi><mi>x</mi></mrow></msup><mtext> </mtext><mi>d</mi><mi>ξ</mi></mrow><annotation encoding="application/x-tex">f(x) = \int_{-\infty}^{\infty}\hat f(\xi)\,e^{2\pi i \xi x}\,d\xi
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.384573em;vertical-align:-0.970281em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.414292em;"><span style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">∞</span></span></span></span><span style="top:-3.8129000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">∞</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.970281em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9578799999999998em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span><span style="top:-3.26344em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.08332999999999999em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.04601em;">ξ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">π</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.04601em;">ξ</span><span class="mord mathdefault mtight">x</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.04601em;">ξ</span></span></span></span></span></p>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
                 
 
                 <hr>
@@ -275,7 +317,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.</span> <span class="toc-nav-text"> 配环境</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.</span> <span class="toc-nav-text"> 配环境</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text"> 基操部分</span></a></li></ol></li></ol>
         
         </div>
       </aside>
